@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/navbar'
@@ -24,7 +23,6 @@ export default function Home() {
           <div className={styles.presentationContent}>
             <h2>Bem vindo a UniReadi,</h2>
             <p>uma universidade de tecnologia de renome internacional, localizada em uma das cidades mais vibrantes e inovadoras do mundo. Contando com um Campus altamente tecnologico e corpo docente extremamente qualificado, nós somos dedicados a preparar os líderes do futuro em campos como engenharia, ciência da computação, programação aplicada e muitos outros.</p>
-            {/* <p>    Na UniReadi, nossos alunos aprendem com os melhores pesquisadores em suas áreas de estudo,comprometidos em fornecer uma educação de qualidade e prepará-los para enfrentar os desafios da vida real. Nosso corpo docente é composto por profissionais de renome internacional, que trazem uma vasta experiência do mercado de trabalho para a sala de aula. Essa combinação única de teoria e prática é fundamental para a nossa missão de formar líderes em tecnologia.</p> */}
           </div>
 
           <div className={styles.mouseImg}>
@@ -33,9 +31,54 @@ export default function Home() {
 
         </div>
 
-
         <div className={styles.scholarshipsContainer}>
+          <h1>Processos Seletivos abertos</h1>
 
+          <div className={styles.scholarshipsCards}>
+
+            <div className={styles.scholarshipsCard}>
+
+              <img src="/Uni.png" alt="" />
+
+              <div className={styles.contentCard}>
+
+                <h3>Monitoria Quimica</h3>
+
+                <div className={styles.descriptionCard}>
+                  <p>Processo seletivo sendo feito para monitores da turma de quimica 2 da UniReadi.</p>
+                </div>
+
+                <div className={styles.dataCard}>
+
+                  <div className={styles.valueDataCard}>
+                    <p>3</p>
+                    <p className={styles.keyDataCard}>Vagas</p>
+                  </div>
+
+                  <div className={styles.valueDataCard}>
+                    <p>2</p>
+                    <p className={styles.keyDataCard}>Bolsas</p>
+                  </div>
+
+                  <div className={styles.valueDataCard}>
+                    <p>Quimica</p>
+                    <p className={styles.keyDataCard}>Curso</p>
+                  </div>
+
+                  <div className={styles.valueDataCardLast}>
+                    <p>10/04 - 10/05</p>
+                    <p className={styles.keyDataCard}>Periodo</p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            
+
+          </div>
         </div>
       </main>
     </>
