@@ -1,5 +1,54 @@
 .main {
-  display: flex;
   width: 100%;
   min-height: 100vh;
+}
+
+.presentationContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.boxImg {
+  margin-right: 40px;
+  width: 40%;
+}
+
+.boxImg img{
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+
+  border-radius: 102px 94px 123px 200px;
+  -moz-border-radius: 102px 94px 123px 200px;
+  -webkit-border-radius: 102px 94px 123px 200px;
+  border: 0px solid #000000;
+}
+
+.presentationContent {
+  width: 20%;
+}
+
+.presentationContent h2{
+  margin-bottom: 10px;
+  font-size: 2rem
+}
+
+.scholarshipsContainer {
+  background-color: black;
+  width: 100%;
+  height: 100vh
+}
+
+.mouseImg{
+  position: absolute;
+  bottom: 0;
+}
+
+.mouseImg img{
+  height: 80px
 }
