@@ -17,6 +17,26 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Navbar/>
+        <div className={styles.presentationContainer}>
+          <div className={styles.boxImg}>
+            <img src="https://img.freepik.com/fotos-gratis/grupo-de-estudantes-felizes-por-voltar-a-universidade_23-2148586613.jpg?w=2000" alt="" />
+          </div>
+          <div className={styles.presentationContent}>
+            <h2>Bem vindo a UniReadi,</h2>
+            <p>uma universidade de tecnologia de renome internacional, localizada em uma das cidades mais vibrantes e inovadoras do mundo. Contando com um Campus altamente tecnologico e corpo docente extremamente qualificado, nós somos dedicados a preparar os líderes do futuro em campos como engenharia, ciência da computação, programação aplicada e muitos outros.</p>
+            {/* <p>    Na UniReadi, nossos alunos aprendem com os melhores pesquisadores em suas áreas de estudo,comprometidos em fornecer uma educação de qualidade e prepará-los para enfrentar os desafios da vida real. Nosso corpo docente é composto por profissionais de renome internacional, que trazem uma vasta experiência do mercado de trabalho para a sala de aula. Essa combinação única de teoria e prática é fundamental para a nossa missão de formar líderes em tecnologia.</p> */}
+          </div>
+
+          <div className={styles.mouseImg}>
+            <img src="https://www.cinepolis.com.br/promocaomonstruosa/img/scroll-down.gif" alt="" />
+          </div>
+
+        </div>
+
+
+        <div className={styles.scholarshipsContainer}>
+
+        </div>
       </main>
     </>
   )
