@@ -80,7 +80,7 @@ export default function Home() {
                   </div>
 
                   <div className={styles.valueDataCardLast}>
-                    <p>{ship.vacancys} - {ship.vacancys}</p>
+                    <p>{ship.beginDate.slice(8,10)}/{ship.beginDate.slice(5,7)} - {ship.endDate.slice(8,10)}/{ship.endDate.slice(5,7)}</p>
                     <p className={styles.keyDataCard}>Periodo</p>
                   </div>
 
