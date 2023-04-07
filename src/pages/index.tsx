@@ -1,11 +1,23 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/navbar'
+import { useEffect, useState } from 'react'
 
-const inter = Inter({ subsets: ['latin'] })
+import api from '@/services/api'
 
 export default function Home() {
+  const [scholarships, setScholarships] = useState([])
+
+  useEffect(() => {
+    getScholarships()
+  }, [])
+
+  const getScholarships = async () => {
+    const event = await api.get(`/process`)
+
+    setScholarships(event.data)
+  }
+
   return (
     <>
       <Head>
@@ -36,37 +48,39 @@ export default function Home() {
 
           <div className={styles.scholarshipsCards}>
 
-            <div className={styles.scholarshipsCard}>
+            {scholarships.map((ship: any) => (
+
+              <div className={styles.scholarshipsCard}>
 
               <img src="/Uni.png" alt="" />
 
               <div className={styles.contentCard}>
 
-                <h3>Monitoria Quimica</h3>
+                <h3>{ship.name}</h3>
 
                 <div className={styles.descriptionCard}>
-                  <p>Processo seletivo sendo feito para monitores da turma de quimica 2 da UniReadi.</p>
+                  <p>{ship.description}</p>
                 </div>
 
                 <div className={styles.dataCard}>
 
                   <div className={styles.valueDataCard}>
-                    <p>3</p>
+                    <p>{ship.vacancys}</p>
                     <p className={styles.keyDataCard}>Vagas</p>
                   </div>
 
                   <div className={styles.valueDataCard}>
-                    <p>2</p>
+                    <p>{ship.scholarships}</p>
                     <p className={styles.keyDataCard}>Bolsas</p>
                   </div>
 
                   <div className={styles.valueDataCard}>
-                    <p>Quimica</p>
+                    <p>{ship.course}</p>
                     <p className={styles.keyDataCard}>Curso</p>
                   </div>
 
                   <div className={styles.valueDataCardLast}>
-                    <p>10/04 - 10/05</p>
+                    <p>{ship.vacancys} - {ship.vacancys}</p>
                     <p className={styles.keyDataCard}>Periodo</p>
                   </div>
 
@@ -75,8 +89,7 @@ export default function Home() {
               </div>
 
             </div>
-
-            
+            ))}
 
           </div>
         </div>
