@@ -1,0 +1,40 @@
+.navContainer {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    padding: 20px 90px 0 90px;
+}
+
+.logoBox {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem
+}
+
+.logoBox img{
+    height: 80px;
+    margin-right: 10px
+}
+
+.logoBox h3{
+    padding-top: 5px
+}
+
+.linkPages {
+}
+
+.linkPages a{
+    text-decoration: none;
+    margin-right: 80px;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold
+}
+
+.linkPages a:hover{
+    color: #7c8c44
+}
