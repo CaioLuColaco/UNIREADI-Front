@@ -10,7 +10,7 @@ export default function Navbar() {
 
             <div className={styles.linkPages}>
                 <a href="/">Home</a>
-                <a href="">login</a>
+                <a href="/login">login</a>
             </div>
         </div>
     )
