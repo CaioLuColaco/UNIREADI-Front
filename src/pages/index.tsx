@@ -3,7 +3,7 @@ import styles from '@/styles/Home.module.css'
 import Navbar from '@/components/navbar'
 import { useEffect, useState } from 'react'
 
-import api from '@/services/api'
+import {api} from '@/services/api'
 
 export default function Home() {
   const [scholarships, setScholarships] = useState([])
