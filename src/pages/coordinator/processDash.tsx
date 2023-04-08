@@ -21,7 +21,7 @@ export default function ProcessDash({ user }: any) {
                 <div className={styles.dashContainer}>
 
                     <div className={styles.viewMeProcess}>
-                        
+
                         <h2>Meus Processos</h2>
 
                         <div className={styles.processList}>
@@ -67,7 +67,51 @@ export default function ProcessDash({ user }: any) {
                     </div>
 
                     <div className={styles.addProcess}>
+                        <h2>Gerenciar Processos</h2>
 
+                        <div className={styles.editorProcess}>
+                            <div>
+                                <h3 className={styles.editorLabel}>Nome</h3>
+                                <input type="text" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                            </div>
+
+                            <div>
+                                <h3 className={styles.editorLabel}>Descrição</h3>
+                                <input type="text" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                            </div>
+
+                            <div className={styles.editorDataNumbers}>
+                                <div>
+                                    <h3 className={styles.editorLabel}>Vagas</h3>
+                                    <input type="number" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                                </div>
+                                <div>
+                                    <h3 className={styles.editorLabel}>Bolsas</h3>
+                                    <input type="number" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                                </div>
+                            </div>
+
+                            <div className={styles.editorDataNumbers}>
+                                <div>
+                                    <h3 className={styles.editorLabel}>Inicio</h3>
+                                    <input type="date" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                                </div>
+                                <div>
+                                    <h3 className={styles.editorLabel}>Fim</h3>
+                                    <input type="date" placeholder="Escreva aqui..." onChange={(e) => console.log(e)} value={""}/>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className={styles.editorLabel}>Status</h3>
+                                <select name="status" onChange={(e) => console.log(e.target.value)} value={""}>
+                                    <option value="aberto">Aberto</option>
+                                    <option value="fechado">Fechado</option>
+                                </select>
+                            </div>
+
+                            <button onClick={() => console.log()}>Cadastrar</button>
+                        </div>
                     </div>
                 </div>
             </main>

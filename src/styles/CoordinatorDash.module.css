@@ -23,19 +23,13 @@
 
 .viewMeProcess h2{
     margin-bottom: 20px
-    
 }
 
 .processList {
     overflow: auto;
     max-width: 95%;
     max-height: 70%;
-    border: 2px solid #798842;
     border-radius: 15px
-}
-
-.addProcess {
-    background-color: #798842;
 }
 
 .processCard {
@@ -84,5 +78,78 @@
 .cardEditButton button:hover{
     color: white;
     background: #798842;
+    border: 1px solid white
 }
 
+
+.addProcess {
+    background-color: #798842;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.addProcess h2{
+    margin-bottom: 20px;
+    color: white
+}
+
+.editorProcess {
+    display: flex;
+    flex-direction: column
+}
+
+.editorProcess h3{
+    font-weight: regular;
+    font-size: 16px;
+}
+
+.editorProcess input{
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    margin-bottom: 16px
+}
+
+.editorProcess select{
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    margin-bottom: 16px
+}
+
+.editorProcess button{
+    margin: 16px 0 0 0;
+    padding: 16px 24px;
+    border-radius: 4px;
+    border: none;
+    color: #778740;
+    background-color:white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.editorProcess button:hover{
+    background-color: #778740;
+    color: white;
+    border: 1px solid white
+}
+
+.editorLabel {
+    color: white;
+    text-align: start;
+    margin-bottom: 5px
+}
+
+.editorDataNumbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+}
