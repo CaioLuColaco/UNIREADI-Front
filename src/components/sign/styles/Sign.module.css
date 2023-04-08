@@ -60,7 +60,7 @@
 }
 
 .signupFields button{
-    margin: 16px 0 32px 0;
+    margin: 16px 0 0 0;
     padding: 16px 24px;
     border-radius: 4px;
     border: none;
@@ -142,7 +142,8 @@
     visibility: hidden
 }
 .desktopVision{
-    visibility: visible
+    visibility: visible;
+    margin-top: 16px
 }
 
 @media screen and (max-width: 559.9px) {
@@ -160,3 +161,9 @@
     }
 }
 
+.alertRegister {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: red;
+    text-align: center
+}
