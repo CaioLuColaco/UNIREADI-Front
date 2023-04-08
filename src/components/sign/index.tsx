@@ -1,7 +1,7 @@
 import styles from "./styles/Sign.module.css"
 import { useEffect, useState, useContext } from "react"
 import { AuthContext } from "@/contexts/AuthContext"
-import api from "@/services/api"
+import {api} from "@/services/api"
 
 export default function Sign(){
     const [overlay, setOverlay] = useState(`${styles.overlayImg}`)

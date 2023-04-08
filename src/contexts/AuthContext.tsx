@@ -1,4 +1,4 @@
-import api from "@/services/api";
+import {api} from "@/services/api";
 import { createContext, useState, useEffect } from "react";
 import { setCookie, parseCookies } from "nookies";
 import Router from "next/router";
