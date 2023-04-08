@@ -1,14 +1,3 @@
-import axios from "axios";
-import { parseCookies } from 'nookies'
+import { getApiClient } from "./axios";
 
-const { 'uniReadiToken': token } = parseCookies()
-
-const api = axios.create({
-    baseURL: process.env.API_URL
-})
-
-if(token) {
-    api.defaults.headers['Authorization'] = `Bearer ${token}`
-}
-
-export default api;
+export const api = getApiClient()
