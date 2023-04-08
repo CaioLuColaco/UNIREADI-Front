@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     const result = await apiClient.post('/decodeToken', {token: token})
 
-    if(result.data.role == "coordinator"){
+    if(result.data.role != "student"){
         return {
             redirect: {
                 destination: "/login",
