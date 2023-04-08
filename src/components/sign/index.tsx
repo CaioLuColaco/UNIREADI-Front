@@ -1,9 +1,11 @@
 import styles from "./styles/Sign.module.css"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { AuthContext } from "@/contexts/AuthContext"
 import api from "@/services/api"
 
 export default function Sign(){
     const [overlay, setOverlay] = useState(`${styles.overlayImg}`)
+    const { logIn } = useContext(AuthContext)
 
     // Register Data
     const [nameRegister, setNameRegister] = useState("")
@@ -55,6 +57,19 @@ export default function Sign(){
 
     }
 
+    // Login Data
+    const [emailLogin, setEmailLogin] = useState("")
+    const [passwordLogin, setPasswordLogin] = useState("")
+
+    const handleLoginSubmit = async () => {
+        try {
+            await logIn(emailLogin, passwordLogin)
+            
+        } catch (error) {
+            console.log("Email ou senha inválidos")
+        }
+    }
+
     return (
         <>
             <div className={overlay}>
@@ -75,14 +90,14 @@ export default function Sign(){
                         <div className={styles.signupFields}>
                                 <div >
                                     <h3>E-mail</h3>
-                                    <input type="text" placeholder="Escreva aqui..."/>
+                                    <input type="text" placeholder="Escreva aqui..." value={emailLogin} onChange={(e) => setEmailLogin(e.target.value)}/>
                                 </div>
                                 <div >
                                     <h3>Senha</h3>
-                                    <input type="password" placeholder="Escreva aqui..."/>
+                                    <input type="password" placeholder="Escreva aqui..." value={passwordLogin} onChange={(e) => setPasswordLogin(e.target.value)}/>
                                 </div>
 
-                            <button>Entrar</button>
+                            <button onClick={() => handleLoginSubmit()}>Entrar</button>
 
                             <p className={styles.desktopVision}>Ainda não cadastrado? <a onClick={() => setOverlay(`${styles.overlayImg} ${styles.leftAnimate}`)}>Click here</a></p>
                             <p className={styles.phoneVision}>Already have registration? <a onClick={() => setOverlay(`${styles.overlayImg} ${styles.leftAnimate}`)}>Click here</a></p>
