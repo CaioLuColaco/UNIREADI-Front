@@ -1,0 +1,96 @@
+.main{
+    min-height: 100vh;
+    width: 100%;
+}
+
+.firstView {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.meProcess {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.meProcess h2{
+    margin-bottom: 20px;
+    color: #798842
+}
+
+.allProcess{
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #798842;
+}
+
+.allProcess h2{
+    margin-bottom: 20px;
+    color: white
+}
+
+.processList {
+    overflow: auto;
+    max-width: 95%;
+    max-height: 70%;
+    border-radius: 15px
+}
+
+.processCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    color: #798842;
+    margin-bottom: 1px
+}
+
+.processCard h3{
+    text-align: start;
+    padding-bottom: 10px
+}
+
+.dataProcessCard{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.dataValue {
+    margin-right: 15px
+}
+
+.dataValue p{
+    font-size: 0.8rem
+}
+
+.cardEditButton button{
+    color: white;
+    background: #798842;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold
+}
+
+.cardEditButton button:hover{
+    color: #798842;
+    background: white;
+    border: 1px solid #798842
+}
