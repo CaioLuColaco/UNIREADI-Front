@@ -65,6 +65,12 @@
     font-size: 0.8rem
 }
 
+.cardEditButton{
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
 .cardEditButton button{
     color: #798842;
     background: white;
@@ -185,4 +191,57 @@
     font-weight: bold;
     margin-top: 5px;
     font-size: 1rem;
+}
+
+.viewSubscribeds {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.viewSubscribeds h2{
+    margin-bottom: 60px
+}
+
+.listSubscribeds {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    gap: 3px;
+}
+
+.subscribedCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:  #798842;
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+    width: 100%
+}
+
+.fieldSubscribedCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.Selections{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px
+
+}
+
+.fieldSubscribedCard p:first-child{
+    padding-bottom: 10px
 }

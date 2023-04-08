@@ -10,6 +10,9 @@ import { api } from "@/services/api"
 export default function ProcessDash({ user }: any) {
 
     const [dataUser, setDataUser] = useState(user)
+    const [viewProcess, setViewProcess]: any = useState()
+    const [vacancysView, setVacancysView] = useState(0)
+    const [scholarshipsView, setScholarShipsView] = useState(0)
 
     const [nameProcess, setNameProcess] = useState("")
     const [descriptionProcess, setDescriptionProcess] = useState("")
@@ -22,6 +25,69 @@ export default function ProcessDash({ user }: any) {
     const [alertRegister, setAlertRegister] = useState("")
     const [isEditing, setIsEditing] = useState(false)
     const [editProcessId, setEditProcessId] = useState("")
+
+    const getViewProcess = async (processId: string) => {
+        await api.get(`/process/${processId}`).then((res) => {
+
+            var vacancys = res.data.vacancys
+            var scholarShips = res.data.scholarships
+
+            const usersProcess = res.data.userProcess
+
+            for(user of usersProcess){
+                if(user.scholarAccept) {
+                    scholarShips = scholarShips- 1
+                }
+                if(user.vacancyAccept){
+                    vacancys = vacancys - 1
+                }
+            }
+
+            setVacancysView(vacancys)
+            setScholarShipsView(scholarShips)
+            setViewProcess(res.data)
+
+            window.scrollTo({ top: 1000, behavior: 'smooth' });
+
+        }).catch((error) => console.log(error))
+    }
+
+    const updateVacancyView = async (accept: any, userProcessId: string) => {
+        if(accept){
+            await api.put(`userProcess/${userProcessId}`, {
+                vacancyAccept: true
+            }).then((res) => {
+                setVacancysView(vacancysView - 1)
+                getViewProcess(viewProcess.id)
+            }).catch((error) => console.log(error))
+        }else{
+            await api.put(`userProcess/${userProcessId}`, {
+                vacancyAccept: false
+            }).then((res) => {
+                setVacancysView(vacancysView + 1)
+                getViewProcess(viewProcess.id)
+            }).catch((error) => console.log(error))
+        }
+    }
+
+    const updateScholarView = async (accept: any, userProcessId: string) => {
+        if(accept){
+            await api.put(`userProcess/${userProcessId}`, {
+                scholarAccept: true
+            }).then((res) => {
+                setScholarShipsView(scholarshipsView - 1)
+                getViewProcess(viewProcess.id)
+            }).catch((error) => console.log(error))
+        }else{
+            await api.put(`userProcess/${userProcessId}`, {
+                scholarAccept: false
+            }).then((res) => {
+                setScholarShipsView(scholarshipsView + 1)
+                getViewProcess(viewProcess.id)
+            }).catch((error) => console.log(error))
+        }
+    }
+
 
     const handleProcessRegister = async () => {
         if(nameProcess == "") {
@@ -161,7 +227,6 @@ export default function ProcessDash({ user }: any) {
 
     const updateUser = async () => await api.get(`/user/${user.id}`).then((res) => setDataUser(res.data)).catch((error) => console.log(error))
 
-    console.log(user)
     return (
         <>
             <Head>
@@ -213,6 +278,7 @@ export default function ProcessDash({ user }: any) {
 
                                         <div className={styles.cardEditButton}>
                                             <button onClick={() => getEdit(process.id)} disabled={new Date()>new Date(process.endDate)? true : false}>Editar</button>
+                                            <button onClick={() => getViewProcess(process.id)}>Inscritos</button>
                                         </div>
                                     </div>
                                 )
@@ -278,6 +344,59 @@ export default function ProcessDash({ user }: any) {
                         </div>
                     </div>
                 </div>
+
+            {viewProcess &&
+                <div className={styles.viewSubscribeds}>
+
+                    <h2>{viewProcess.name}</h2>
+
+                    <div className={styles.listSubscribeds}>
+
+                        {viewProcess.userProcess.map((userProcess: any) => {
+                            return (
+                                <div className={styles.subscribedCard} key={userProcess.user.id}>
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>Nome</p>
+                                        <p>{userProcess.user.name}</p>
+                                    </div>
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>Course</p>
+                                        <p>{userProcess.user.course}</p>
+                                    </div>
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>Email</p>
+                                        <p>{userProcess.user.email}</p>
+                                    </div>
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>Historico</p>
+                                        <p>{userProcess.user.historic}</p>
+                                    </div>
+
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>Vaga</p>
+                                        <input type="checkBox" disabled={vacancysView==0? true : false} checked={userProcess.vacancyAccept==false? false : true} onChange={(e) => updateVacancyView(e.target.checked, userProcess.id)}/>
+                                    </div>
+
+                                    <div className={styles.fieldSubscribedCard}>
+                                        <p>bolsa</p>
+                                        <input type="checkBox" disabled={scholarshipsView==0 || userProcess.vacancyAccept==false? true : false} checked={userProcess.scholarAccept==false? false : true} onChange={(e) => updateScholarView(e.target.checked, userProcess.id)} />
+                                    </div>
+
+                                </div>
+                            )
+                        })
+                        
+                        }
+
+                        <div className={styles.Selections}>
+                            <h4>Vagas disponíveis: {vacancysView}</h4>
+                            <h4>Bolsas disponíveis: {scholarshipsView}</h4>
+                        </div>
+
+                    </div>
+                </div>
+            
+            }
             </main>
         </>
     )
