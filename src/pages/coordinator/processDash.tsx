@@ -20,6 +20,8 @@ export default function ProcessDash({ user }: any) {
     const [endDateProcess, setEndDateProcess] = useState("")
 
     const [alertRegister, setAlertRegister] = useState("")
+    const [isEditing, setIsEditing] = useState(false)
+    const [editProcessId, setEditProcessId] = useState("")
 
     const handleProcessRegister = async () => {
         if(nameProcess == "") {
@@ -76,6 +78,87 @@ export default function ProcessDash({ user }: any) {
         })
     }
 
+    const handleEditProcess = async () => {
+        if(nameProcess == "") {
+            setAlertRegister("Preencher nome!")
+            return
+        }
+
+        if(vacancysProcess == 0) {
+            setAlertRegister("Preencher número de vagas!")
+            return
+        }
+        
+        if(vacancysProcess < scholarShipsProcess) {
+            setAlertRegister("Número de vagas menor que o número de bolsas!")
+            return
+        }
+        
+        if(beginDateProcess == "") {
+            setAlertRegister("Preencher data inicial!")
+            return
+        }
+
+        if(endDateProcess == "") {
+            setAlertRegister("Preencher data final!")
+            return
+        }
+
+        await api.put(`/process/${editProcessId}`, {
+            name: nameProcess,
+            description: descriptionProcess? descriptionProcess : "",
+            status: statusProcess,
+            vacancys: vacancysProcess,
+            scholarships: scholarShipsProcess,
+            beginDate: beginDateProcess,
+            endDate: endDateProcess,
+            course: dataUser.course,
+            creatorId: dataUser.id
+        }).then((res) => {
+
+            setAlertRegister("")
+            setBeginDateProcess("")
+            setDescriptionProcess("")
+            setEndDateProcess("")
+            setNameProcess("")
+            setScholarShipsProcess(0)
+            setStatusProcess("")
+            setVacancysProcess(0)
+
+            updateUser()
+
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+    const getEdit = (findId: string) => {
+        const editProcess = dataUser.createdProcess.find((obj: any) => obj.id == findId)
+        setNameProcess(editProcess.name)
+        setStatusProcess(editProcess.status)
+        setBeginDateProcess(new Date(editProcess.beginDate).toISOString().substr(0, 10))
+        setEndDateProcess(new Date(editProcess.endDate).toISOString().substr(0, 10))
+        setDescriptionProcess(editProcess.description)
+        setVacancysProcess(editProcess.vacancys)
+        setScholarShipsProcess(editProcess.scholarships)
+
+        setEditProcessId(findId)
+        setIsEditing(true)
+    }
+
+    const cleanFields = () => {
+        setAlertRegister("")
+        setBeginDateProcess("")
+        setDescriptionProcess("")
+        setEndDateProcess("")
+        setNameProcess("")
+        setScholarShipsProcess(0)
+        setStatusProcess("")
+        setVacancysProcess(0)
+
+        setIsEditing(false)
+    }
+
     const updateUser = async () => await api.get(`/user/${user.id}`).then((res) => setDataUser(res.data)).catch((error) => console.log(error))
 
     console.log(user)
@@ -129,7 +212,7 @@ export default function ProcessDash({ user }: any) {
                                         </div>
 
                                         <div className={styles.cardEditButton}>
-                                            <button>Editar</button>
+                                            <button onClick={() => getEdit(process.id)} disabled={new Date()>new Date(process.endDate)? true : false}>Editar</button>
                                         </div>
                                     </div>
                                 )
@@ -183,8 +266,14 @@ export default function ProcessDash({ user }: any) {
                                     <option value="fechado">Fechado</option>
                                 </select>
                             </div>
+                            
+                            <div className={styles.buttonsBox}>
 
-                            <button onClick={() => handleProcessRegister()}>Cadastrar</button>
+                                {!isEditing && <button className={styles.registerButton} onClick={() => handleProcessRegister()}>Cadastrar</button>}
+                                {isEditing && <button className={styles.editButton} onClick={() => handleEditProcess()}>Editar</button>}
+                                <button className={styles.cleanButton} onClick={() => cleanFields()}>limpar</button>
+
+                            </div>
                             <p className={styles.alertRegister}>{alertRegister}</p>
                         </div>
                     </div>
