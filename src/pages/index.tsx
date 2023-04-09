@@ -50,7 +50,7 @@ export default function Home() {
 
             {scholarships.map((ship: any) => (
 
-              <div className={styles.scholarshipsCard}>
+              <div className={styles.scholarshipsCard} key={ship.id}>
 
               <img src="/Uni.png" alt="" />
 

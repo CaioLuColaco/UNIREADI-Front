@@ -1,4 +1,3 @@
-import { AuthContext } from "@/contexts/AuthContext"
 import { getApiClient } from "@/services/axios"
 import { GetServerSideProps } from "next"
 import Head from "next/head"
@@ -11,6 +10,7 @@ import Navbar from "@/components/navbar"
 export default function ProcessDash({ user, allProcess }: any) {
 
     const [userData, setUserData] = useState(user)
+    const [historicUrl, setHistoricUrl] = useState(user.historic)
 
     const [userNameEditor, setUserNameEditor] = useState(user.name)
     const [userCourseEditor, setUserCourseEditor] = useState(user.course)
@@ -34,13 +34,10 @@ export default function ProcessDash({ user, allProcess }: any) {
         await api.get(`/user/${userData.id}`).then((res) => setUserData(res.data)).catch((error) => console.log(error))
     }
 
-    const uploadPDF = async (e: any) => {
-
+    const handleRegisterHistoric = async () => {
+        await api.put(`/user/${userData.id}`, {historic: historicUrl}).then((res) => updateUser()).catch((error) => console.log(error))
     }
 
-    console.log("userData: ")
-    console.log(userData)
-    console.log(allProcess)
     return (
         <>
             <Head>
@@ -173,8 +170,10 @@ export default function ProcessDash({ user, allProcess }: any) {
 
                                 <div>
                                     <h3>Historico Escolar</h3>
-                                    <input type="file" accept="application/pdf" onChange={(e) => uploadPDF(e)}/>
+                                    <input type="text" disabled={userData.historic==""? false : true} placeholder="Digite aqui a URL" onChange={(e) => setHistoricUrl(e.target.value)} value={historicUrl}/>
                                 </div>
+
+                                <button onClick={() => handleRegisterHistoric()}>Cadastrar Historico</button>
 
                         </div>
                     </div>

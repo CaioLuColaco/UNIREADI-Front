@@ -135,3 +135,29 @@
     border-radius: 4px;
     margin-bottom: 16px
 }
+
+.signupFields button{
+    margin: 16px 0 0 0;
+    padding: 16px 24px;
+    border-radius: 4px;
+    border: none;
+    color: #FFFFFF;
+    background-color: #7ED957;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signupFields button:hover{
+    background-color: #778740;
+}
+
+.signupFields a{
+    color: #7ED957;
+    cursor: pointer;
+    font-weight: bold
+}
+
+.signupFields a:hover{
+    color: #778740;
+}

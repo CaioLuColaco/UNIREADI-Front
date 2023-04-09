@@ -304,11 +304,11 @@ export default function ProcessDash({ user }: any) {
                             <div className={styles.editorDataNumbers}>
                                 <div>
                                     <h3 className={styles.editorLabel}>Vagas</h3>
-                                    <input type="number" placeholder="Escreva aqui..." onChange={(e) => setVacancysProcess(parseInt(e.target.value))} value={vacancysProcess}/>
+                                    <input type="number" placeholder="Escreva aqui..." min={1} onChange={(e) => setVacancysProcess(parseInt(e.target.value))} value={vacancysProcess}/>
                                 </div>
                                 <div>
                                     <h3 className={styles.editorLabel}>Bolsas</h3>
-                                    <input type="number" placeholder="Escreva aqui..." onChange={(e) => setScholarShipsProcess(parseInt(e.target.value))} value={scholarShipsProcess}/>
+                                    <input type="number" placeholder="Escreva aqui..." min={0} max={vacancysProcess} onChange={(e) => setScholarShipsProcess(parseInt(e.target.value))} value={scholarShipsProcess}/>
                                 </div>
                             </div>
 
@@ -369,7 +369,7 @@ export default function ProcessDash({ user }: any) {
                                     </div>
                                     <div className={styles.fieldSubscribedCard}>
                                         <p>Historico</p>
-                                        <p>{userProcess.user.historic}</p>
+                                        <a href={`${userProcess.user.historic}`}><p>Acessar</p></a>
                                     </div>
 
                                     <div className={styles.fieldSubscribedCard}>
@@ -385,8 +385,7 @@ export default function ProcessDash({ user }: any) {
                                 </div>
                             )
                         })
-                        
-                        }
+                    }
 
                         <div className={styles.Selections}>
                             <h4>Vagas disponíveis: {vacancysView}</h4>

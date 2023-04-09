@@ -245,3 +245,11 @@
 .fieldSubscribedCard p:first-child{
     padding-bottom: 10px
 }
+.fieldSubscribedCard a{
+    text-decoration: none;
+    color: white
+}
+.fieldSubscribedCard a:hover{
+    text-decoration: none;
+    color: green
+}
