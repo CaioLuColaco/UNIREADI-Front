@@ -94,3 +94,44 @@
     background: white;
     border: 1px solid #798842
 }
+
+.secondView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.secondView h2{
+    color: #798842;
+    margin-bottom: 30px
+}
+
+.signupFields {
+    display: flex;
+    flex-direction: column
+}
+
+.signupFields h3{
+    font-weight: regular;
+    font-size: 16px;
+    color: #798842
+}
+
+.signupFields input{
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    margin-bottom: 16px
+}
+
+.signupFields select{
+    width: 100%;
+    padding: 16px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    margin-bottom: 16px
+}

@@ -12,7 +12,16 @@ export default function ProcessDash({ user, allProcess }: any) {
 
     const [userData, setUserData] = useState(user)
 
+    const [userNameEditor, setUserNameEditor] = useState(user.name)
+    const [userCourseEditor, setUserCourseEditor] = useState(user.course)
+
     const inscribeUser = async (processId: string) => {
+        if(userData.historic == "") {
+            console.log("Para se inscrever precisa anexar o historico!")
+            window.scrollTo({ top: 1000, behavior: 'smooth' })
+            return
+        }
+
         await api.post('/userProcess', {
             userId: user.id,
             processId: processId
@@ -23,6 +32,10 @@ export default function ProcessDash({ user, allProcess }: any) {
 
     const updateUser = async () => {
         await api.get(`/user/${userData.id}`).then((res) => setUserData(res.data)).catch((error) => console.log(error))
+    }
+
+    const uploadPDF = async (e: any) => {
+
     }
 
     console.log("userData: ")
@@ -39,7 +52,7 @@ export default function ProcessDash({ user, allProcess }: any) {
 
             <main className={styles.main}>
                 <Navbar/>
-                
+
                 <div className={styles.firstView}>
 
                     <div className={styles.meProcess}>
@@ -131,6 +144,40 @@ export default function ProcessDash({ user, allProcess }: any) {
                         }
                     </div>
 
+                </div>
+
+                <div className={styles.secondView}>
+                    <h2>Dados Pessoais</h2>
+
+                    <div className={styles.datasContainer}>
+                        <div className={styles.signupFields}>
+                                <div>
+                                    <h3>Nome</h3>
+                                    <input type="text" disabled placeholder="Escreva aqui..." value={userNameEditor} onChange={(e) => setUserNameEditor(e.target.value)}/>
+                                </div>
+
+                                <div>
+                                    <h3>Curso</h3>
+                                    <input type="text" disabled placeholder="Escreva aqui..." value={userCourseEditor} onChange={(e) => setUserCourseEditor(e.target.value)}/>
+                                </div>
+
+                                <div>
+                                    <h3>Email</h3>
+                                    <input type="email" disabled onChange={(e) => console.log(e.target.value)} value={userData.email}/>
+                                </div>
+
+                                <div>
+                                    <h3>Cargo</h3>
+                                    <input type="text" disabled value={userData.role}/>
+                                </div>
+
+                                <div>
+                                    <h3>Historico Escolar</h3>
+                                    <input type="file" accept="application/pdf" onChange={(e) => uploadPDF(e)}/>
+                                </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </main>
